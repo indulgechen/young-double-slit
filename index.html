@@ -548,6 +548,163 @@ body.card-open .rail{opacity:.25}
 body.white .od-line,
 body.white #odChart{opacity:.35}
 
+/* ==========================================================
+   移动端（<=760px）：标题 + 3D + 步骤 + 底部参数面板
+   ========================================================== */
+.m-formula{display:none}
+.m-only{display:none}
+
+@media (max-width:820px){
+  :root{--sheet-h:278px}
+  #stage{perspective:none}
+  .deck{transform:none !important}
+  #page{inset:0;border-radius:0}
+  #page::before{inset:8px}
+  .spine,.lecture,.caption,.dek,.en,.rule,.hint,.page-no{display:none !important}
+
+  .head{left:18px;top:14px;max-width:calc(100% - 128px)}
+  .brand{font-size:8.5px;letter-spacing:.13em;gap:6px}
+  .brand i{width:5px;height:5px}
+  .head h1{font-size:30px;margin-top:8px;letter-spacing:.02em;line-height:1.1}
+  .head .m-formula{
+    display:block;margin:8px 0 0;font-family:var(--num);
+    font-size:11.5px;color:#8a8270;letter-spacing:.02em;
+  }
+
+  .tools{right:10px;top:12px;gap:5px}
+  .tool{padding:7px 9px}
+  .tool span{display:none}
+  .tool svg{width:15px;height:15px}
+
+  .chip{padding:0;width:26px;height:26px;border-radius:50%;justify-content:center;gap:0}
+  .chip span{display:none}
+  .chip b{width:24px;height:24px;font-size:10.5px}
+
+  .steps{
+    left:10px;right:10px;bottom:calc(var(--sheet-h) + 14px);
+    padding:0;border:0;gap:0;
+  }
+  .steplist{width:100%;gap:4px}
+  .step{
+    flex:1;justify-content:center;padding:8px 0;font-size:11px;letter-spacing:.05em;
+    background:rgba(255,253,246,.92);border:1px solid rgba(34,36,42,.12);border-radius:999px;
+  }
+  .step em{font-size:9px}
+  .step.active{background:#23252b;color:#f7f2e4}
+  .stepdesc{display:none}
+
+  .rail{
+    display:flex;
+    left:10px;right:10px;bottom:8px;top:auto;width:auto;height:var(--sheet-h);
+    background:linear-gradient(180deg,rgba(255,253,247,.97),rgba(251,246,233,.99));
+    border:1px solid rgba(80,64,40,.16);border-radius:14px;padding:12px 14px;
+    box-shadow:0 -12px 40px rgba(40,36,24,.14);overflow:hidden;gap:8px;z-index:9;
+  }
+  .rail .panel{background:none;border:0;box-shadow:none;padding:0;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .rail .panel:nth-child(1){display:none}
+  .rail .panel:nth-child(2) .panel-hd{display:none}
+  .rail .panel:nth-child(3){display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+
+  .od-line{gap:3px;font-size:10px}
+  .od-line b{font-size:13px}
+  .od-line span{font-size:9.5px}
+  #odChart{height:44px;margin-top:0}
+  .od-foot{margin-top:0}
+  .od-hint{display:none}
+  .od-chip{font-size:9.5px;padding:2px 8px}
+
+  .ctl{
+    display:grid;grid-template-columns:1fr auto;grid-template-areas:"lab val" "sl sl";
+    gap:1px 6px;padding:1px 0;
+  }
+  .ctl label{grid-area:lab;font-size:10.5px;letter-spacing:.03em}
+  .ctl output{grid-area:val;font-size:10.5px}
+  .ctl input[type=range]{grid-area:sl}
+  .rail .ctl.m-only{display:grid}
+
+  .toggle-row{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:2px 0}
+  .toggle-row label{font-size:10.5px}
+  .toggle-row output{font-size:10px;color:#6d6759}
+  .switch{width:38px;height:19px}
+  .switch i{width:13px;height:13px}
+  .switch[aria-pressed="true"] i{transform:translateX(19px)}
+
+  .dx-box{grid-column:1/-1;margin-top:2px;padding-top:8px}
+  .dx-box span{font-size:10px}
+  .dx-box b{font-size:19px}
+  .dx-box i{font-size:10px}
+
+  .card{
+    left:8px;right:8px;bottom:8px;top:auto;width:auto;max-height:76vh;overflow:auto;
+    padding:18px 18px 14px;z-index:30;
+  }
+  .card h2{font-size:18px}
+  .card .eq{font-size:15px;padding:10px 12px}
+  .card p.body-txt{font-size:13px;line-height:1.85}
+  .card ul.explain li{font-size:12.5px}
+
+  body.card-open .rail,
+  body.card-open .steps{opacity:0;pointer-events:none}
+
+  body.white .od-line,body.white #odChart{opacity:.4}
+}
+#stage{touch-action:none}
+.rail,.card,.steps,.tools{touch-action:pan-y}
+
+/* 手机横屏：右侧参数列，左侧 3D + 底部步骤 */
+@media (max-height:520px) and (min-width:761px){
+  .lecture,.caption,.dek,.en,.rule,.spine,.hint,.page-no,.m-formula{display:none !important}
+  .head{left:14px;top:10px;max-width:calc(100% - 160px)}
+  .brand{font-size:8px;letter-spacing:.12em}
+  .head h1{font-size:26px;margin-top:4px}
+  .tools{right:10px;top:8px;gap:4px}
+  .tool{padding:6px 8px}
+  .tool span{display:none}
+  .tool svg{width:14px;height:14px}
+
+  .steps{left:12px;right:314px;bottom:8px;padding:0;border:0}
+  .steplist{width:100%;gap:4px}
+  .step{
+    flex:1;justify-content:center;padding:7px 0;font-size:10.5px;letter-spacing:.04em;
+    background:rgba(255,253,246,.92);border:1px solid rgba(34,36,42,.12);border-radius:999px;
+  }
+  .stepdesc{display:none}
+
+  .rail{
+    display:flex;left:auto;right:8px;top:8px;bottom:8px;width:298px;height:auto;
+    padding:10px 12px;border-radius:12px;gap:7px;overflow:hidden;z-index:9;
+  }
+  .rail .panel{background:none;border:0;box-shadow:none;padding:0;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .rail .panel:nth-child(1){display:none}
+  .rail .panel:nth-child(2) .panel-hd{display:none}
+  #odChart{display:none}
+  .od-line{font-size:10px}
+  .od-line b{font-size:12.5px}
+  .od-hint{display:none}
+
+  .rail .panel:nth-child(3){display:block}
+  .ctl{display:grid;grid-template-columns:1fr auto;grid-template-areas:"lab val" "sl sl";gap:0 6px;padding:1px 0}
+  .ctl label{grid-area:lab;font-size:10px}
+  .ctl output{grid-area:val;font-size:10px}
+  .ctl input[type=range]{grid-area:sl}
+  .rail .ctl.m-only{display:grid}
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:2px 0}
+  .toggle-row label{font-size:10px}
+  .toggle-row output{font-size:9.5px}
+  .switch{width:34px;height:18px}
+  .switch i{width:12px;height:12px}
+  .switch[aria-pressed="true"] i{transform:translateX(16px)}
+  .dx-box{margin-top:0;padding-top:6px}
+  .dx-box b{font-size:17px}
+  .dx-box span{font-size:9.5px}
+
+  .card{left:8px;right:314px;top:8px;bottom:8px;width:auto;max-height:none;overflow:auto;padding:16px 18px}
+  .card h2{font-size:17px}
+  .card .eq{font-size:14px}
+  .card p.body-txt{font-size:12.5px;line-height:1.8}
+  body.card-open .rail,body.card-open .steps{opacity:0;pointer-events:none}
+}
+
 </style>
 </head>
 <body>
@@ -564,6 +721,7 @@ body.white #odChart{opacity:.35}
         <p class="dek reveal">点光源 L 照亮单缝 S，S 再照亮双缝 S₁、S₂，屏上留下等间距的条纹</p>
         <div class="rule reveal"></div>
         <p class="en reveal">FIG. 11–5 &nbsp; YOUNG'S DOUBLE SLIT</p>
+        <p class="m-formula reveal">Δx = d′λ / d　　Δr = m·λ/2</p>
       </header>
 
       <!-- 讲义 -->
@@ -620,6 +778,11 @@ body.white #odChart{opacity:.35}
             <label>缝屏距 <i>d′</i></label>
             <input id="dist" type="range" min="0.5" max="2" step="0.05" value="1">
             <output id="distOut">1.00 m</output>
+          </div>
+          <div class="ctl m-only">
+            <label>观察点 <i>x</i></label>
+            <input id="probe" type="range" min="-15" max="15" step="0.05" value="3">
+            <output id="probeOut">+3.00 mm</output>
           </div>
           <div class="ctl toggle-row">
             <label>光源</label>
@@ -729,15 +892,91 @@ function resize() {
   scene.width = canvas.width;
   scene.height = canvas.height;
   sctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  layout();
 }
 window.addEventListener('resize', resize);
+window.addEventListener('orientationchange', () => setTimeout(() => { if (mobile) fitMobile(); }, 350));
 
 /* ---------------- 相机 ---------------- */
 const FOV = 0.60;
+const CAM_D = { yaw: -0.53, pitch: 0.55, dist: 6.20 };
+const CAM_M = { yaw: -0.32, pitch: 0.55, dist: 12.20 };
+const CAM_L = { yaw: -0.34, pitch: 0.52, dist: 6.90 };
 const cam = {
-  yaw: -0.53, pitch: 0.55, dist: 6.20, ty: 0.40, tz: -1.50, ox: 0,
-  tw: -0.53, tp: 0.55, td: 6.20
+  yaw: CAM_D.yaw, pitch: CAM_D.pitch, dist: CAM_D.dist, ty: 0.40, tz: -1.50, ox: 0, oy: 0,
+  tw: CAM_D.yaw, tp: CAM_D.pitch, td: CAM_D.dist
 };
+
+let mobile = false;
+let landscape = false;
+let stageTop = 92, stageBottom = 520, stageRight = 1680;
+
+function presetCam(instant) {
+  const c = mobile ? CAM_M : (landscape ? CAM_L : CAM_D);
+  cam.tw = c.yaw; cam.tp = c.pitch; cam.td = c.dist;
+  if (instant) { cam.yaw = c.yaw; cam.pitch = c.pitch; cam.dist = c.dist; }
+}
+
+function layout() {
+  const land = H < 520 && W >= 760;
+  const m = !land && W < 820;
+  const changed = (m !== mobile) || (land !== landscape);
+  mobile = m;
+  landscape = land;
+  if (changed) presetCam(false);
+
+  if (mobile) {
+    stageTop = 92;
+    stageBottom = H - 278 - 8 - 54;   // 底部参数面板 + 步骤条
+    stageRight = W;
+    cam.yaw = CAM_M.yaw; cam.pitch = CAM_M.pitch;
+    cam.ox = -W * 0.03;
+    if (changed || !fitted) { fitMobile(); fitted = true; }
+  } else if (landscape) {
+    stageTop = 56;
+    stageBottom = H - 52;
+    stageRight = W - 306;
+    cam.yaw = CAM_L.yaw; cam.pitch = CAM_L.pitch;
+    cam.ox = -(W - stageRight) * 0.5;
+    cam.oy = (stageTop + stageBottom) / 2 - H / 2;
+    fitted = false;
+  } else {
+    cam.oy = 0;
+    cam.ox = W * 0.045;
+    fitted = false;
+  }
+}
+
+let fitted = false;
+
+/* 竖直方向自动取景：把整条光路塞进标题与参数面板之间的舞台 */
+function fitMobile() {
+  const pts = [
+    { x: 0, y: 0.00, z: 0.42 }, { x: 0, y: 0.86, z: 0.42 },
+    { x: 0.085, y: 0.00, z: 0.37 }, { x: -0.085, y: 0.00, z: 0.37 },
+    { x: -0.30, y: 0.10, z: -1.20 }, { x: 0.30, y: 0.96, z: -1.20 },
+    { x: 0, y: 0.12, z: -3.00 }, { x: 0, y: 1.10, z: -3.00 }
+  ];
+  const top = stageTop + 26, bot = stageBottom - 32;
+  cam.oy = (stageTop + stageBottom) / 2 - H / 2;
+  let d = CAM_M.dist;
+  for (let i = 0; i < 6; i++) {
+    cam.td = d; cam.dist = d;
+    const ys = [];
+    for (const p of pts) { const s = project(p); if (s) ys.push(s.y); }
+    if (ys.length < 2) break;
+    const h = Math.max.apply(null, ys) - Math.min.apply(null, ys);
+    if (h < 1) break;
+    d *= h / (bot - top);
+  }
+  cam.td = d; cam.dist = d;
+  CAM_M.dist = d;
+
+  const ys = [];
+  for (const p of pts) { const s = project(p); if (s) ys.push(s.y); }
+  const mid = (Math.max.apply(null, ys) + Math.min.apply(null, ys)) / 2;
+  cam.oy += (top + bot) / 2 - mid;
+}
 
 function project(p) {
   const cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw);
@@ -750,7 +989,7 @@ function project(p) {
   const zc = cam.dist - z2;
   if (zc < 0.4) return null;
   const f = (H * 0.5) / Math.tan(FOV * 0.5);
-  return { x: W * 0.5 + cam.ox + x1 * f / zc, y: H * 0.5 - y1 * f / zc, z: zc };
+  return { x: W * 0.5 + cam.ox + x1 * f / zc, y: H * 0.5 + cam.oy - y1 * f / zc, z: zc };
 }
 
 /* ---------------- 颜色 ---------------- */
@@ -1345,7 +1584,7 @@ function mmOf(px) {
 }
 
 function drawChart() {
-  if (!cctx) return;
+  if (!cctx || !chart.offsetWidth) return;
   const L = 8, R = 8, T = 26, B = 30;
   const w = CW - L - R, h = CH - T - B;
   const y0 = T + h;
@@ -1466,8 +1705,10 @@ function sizeOD() {
 function odM() { return 2 * Math.abs(P.probe) / dxMM(); }
 
 function drawOD() {
-  if (!octx) return;
-  const L = 10, R = 14, Y = 29;
+  if (!octx || !odChart.offsetWidth) return;
+  const L = 10, R = 14;
+  const Y = Math.max(17, OH - 33);
+  const numY = OH - 12;
   const w = OW - L - R;
   octx.clearRect(0, 0, OW, OH);
 
@@ -1487,7 +1728,7 @@ function drawOD() {
       octx.fillStyle = 'rgba(72,66,52,.55)';
       octx.font = '8.5px "Microsoft YaHei",sans-serif';
       octx.textAlign = 'center';
-      octx.fillText(String(i), x, Y + 19);
+      octx.fillText(String(i), x, numY);
     } else {
       octx.beginPath(); octx.arc(x, Y, 2.9, 0, TAU);
       octx.strokeStyle = 'rgba(72,68,58,.5)'; octx.lineWidth = 1.2; octx.stroke();
@@ -1547,6 +1788,16 @@ function syncPhysics(rebuild) {
   document.body.classList.toggle('white', P.white);
   if (rebuild) rebuildAll();
   else { buildStrips(); G.all = G.stat.concat(G.strips); }
+  syncProbe();
+}
+
+/* 观察点 B：曲线拖动与手机滑杆共用一个入口 */
+function syncProbe() {
+  const el = $('#probe');
+  if (el) {
+    el.value = P.probe;
+    $('#probeOut').textContent = (P.probe >= 0 ? '+' : '') + P.probe.toFixed(2) + ' mm';
+  }
   drawChart();
   probeReadout();
   updateOD();
@@ -1627,7 +1878,22 @@ SPOTS.forEach(h => {
 function chipPos(h) {
   const s = project(h._p);
   if (!s) return null;
-  return { x: clamp(s.x + h.dx, 90, W - 120), y: clamp(s.y + h.dy, 80, H - 80), s };
+  if (mobile || landscape) {
+    // 手机上空间小，四个编号固定在舞台四角，保证不重叠、好点
+    const i = SPOTS.indexOf(h);
+    const fx = [0.16, 0.85, 0.16, 0.84][i];
+    const fy = [0.63, 0.33, 0.33, 0.70][i];
+    return {
+      x: stageRight * fx,
+      y: stageTop + (stageBottom - stageTop) * fy,
+      s: s
+    };
+  }
+  return {
+    x: clamp(s.x + h.dx, 90, W - 120),
+    y: clamp(s.y + h.dy, 80, H - 80),
+    s: s
+  };
 }
 
 /* ---------------- 弹窗 ---------------- */
@@ -1678,6 +1944,7 @@ stepBtns.forEach((b, i) => b.addEventListener('click', () => setStep(i)));
 $('#lam').addEventListener('input', e => { P.lam = +e.target.value; syncPhysics(false); });
 $('#sep').addEventListener('input', e => { P.d = +e.target.value; syncPhysics(true); });
 $('#dist').addEventListener('input', e => { P.D = +e.target.value; syncPhysics(false); });
+$('#probe').addEventListener('input', e => { P.probe = +e.target.value; syncProbe(); });
 $('#whiteBtn').addEventListener('click', () => {
   P.white = !P.white;
   $('#whiteBtn').setAttribute('aria-pressed', String(P.white));
@@ -1702,9 +1969,7 @@ function setProbeFromEvent(e) {
   const r = chart.getBoundingClientRect();
   const px = e.clientX - r.left;
   P.probe = clamp(mmOf(px), -15, 15);
-  drawChart();
-  probeReadout();
-  updateOD();
+  syncProbe();
 }
 chart.addEventListener('pointerdown', e => {
   probeDrag = true;
@@ -1718,29 +1983,59 @@ chart.addEventListener('pointercancel', () => { probeDrag = false; });
 /* ---------------- 交互 ---------------- */
 let dragging = false, lastX = 0, lastY = 0, moved = 0, userTouched = false;
 let targetIsUI = false;
+const pts = new Map();
+let pinchD0 = 0, pinchT0 = 0;
+
+function pinchDist() {
+  const a = [...pts.values()];
+  return Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y) || 1;
+}
 
 function onMove(e) {
+  if (!pts.has(e.pointerId)) return;
+  pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+  if (pts.size >= 2) {
+    if (pinchD0 > 0) {
+      cam.td = clamp(pinchT0 * pinchD0 / pinchDist(), 3.8, 15);
+    }
+    moved += 10;
+    return;
+  }
   if (!dragging) return;
   const dx = e.clientX - lastX, dy = e.clientY - lastY;
   lastX = e.clientX; lastY = e.clientY;
   moved += Math.abs(dx) + Math.abs(dy);
-  cam.tw += dx * 0.0045;
-  cam.tp = clamp(cam.tp + dy * 0.0026, 0.02, 0.62);
+  cam.tw += dx * (mobile ? 0.006 : 0.0045);
+  cam.tp = clamp(cam.tp + dy * 0.0026, 0.02, 0.72);
 }
 
 window.addEventListener('pointerdown', e => {
   targetIsUI = !!e.target.closest('.chip,.card,.tool,.step,.rail,canvas');
   if (targetIsUI) return;
-  dragging = true; moved = 0;
-  lastX = e.clientX; lastY = e.clientY;
+  pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
   userTouched = true;
+  if (pts.size === 1) {
+    dragging = true; moved = 0;
+    lastX = e.clientX; lastY = e.clientY;
+  } else if (pts.size === 2) {
+    dragging = false;
+    pinchD0 = pinchDist();
+    pinchT0 = cam.td;
+  }
 });
 window.addEventListener('pointermove', onMove);
-window.addEventListener('pointerup', () => {
-  const wasDrag = moved > 5;
-  dragging = false;
-  if (!wasDrag && !targetIsUI) closeCard();
-});
+function endPointer(e) {
+  pts.delete(e.pointerId);
+  if (pts.size < 2) pinchD0 = 0;
+  if (pts.size === 0) {
+    const wasDrag = moved > 5;
+    dragging = false;
+    if (!wasDrag && !targetIsUI) closeCard();
+  }
+}
+window.addEventListener('pointerup', endPointer);
+window.addEventListener('pointercancel', endPointer);
 
 window.addEventListener('wheel', e => {
   if (e.target.closest('.card,.rail')) return;
@@ -1782,16 +2077,16 @@ function frame(nowMs) {
 
   if (entranceOn && !userTouched) {
     const k = easeOut(clamp(t / 2.6, 0, 1));
-    cam.tw = lerp(-0.95, -0.53, k);
-    cam.tp = lerp(0.30, 0.55, k);
-    cam.td = lerp(7.9, 6.20, k);
+    const C = mobile ? CAM_M : (landscape ? CAM_L : CAM_D);
+    cam.tw = lerp(C.yaw - 0.42, C.yaw, k);
+    cam.tp = lerp(C.pitch - 0.25, C.pitch, k);
+    cam.td = lerp(C.dist * 1.28, C.dist, k);
   }
   if (entranceOn && t > 3.2) entranceOn = false;
 
   cam.yaw += (cam.tw - cam.yaw) * Math.min(1, dt * 5.0);
   cam.pitch += (cam.tp - cam.pitch) * Math.min(1, dt * 5.0);
   cam.dist += (cam.td - cam.dist) * Math.min(1, dt * 5.0);
-  cam.ox = W * 0.045;
 
   const sp = Math.min(1, dt * 3.0);
   fx.beam += (fxT.beam - fx.beam) * sp;
@@ -1878,12 +2173,11 @@ function placeChips(t) {
 }
 
 /* ---------------- 启动 ---------------- */
+resize();
 if (STILL) {
   document.body.classList.add('ready', 'still');
   entranceOn = false;
-  cam.yaw = cam.tw = -0.53;
-  cam.pitch = cam.tp = 0.55;
-  cam.dist = cam.td = 6.20;
+  presetCam(true);
 }
 
 // URL 参数：?lam=650&d=0.35&D=1.6&white=1（也方便截屏/录屏预设）
@@ -1907,6 +2201,7 @@ sizeOD();
 window.addEventListener('resize', () => { sizeChart(); sizeOD(); });
 syncPhysics(true);
 setStep(3);
+
 requestAnimationFrame(() => document.body.classList.add('ready'));
 requestAnimationFrame(frame);
 
